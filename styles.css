@@ -364,17 +364,6 @@ a {
   opacity: 0;
 }
 
-.dishline-note {
-  position: absolute;
-  left: calc(50% + min(26vw, 190px));
-  top: 26%;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transform: rotate(14deg);
-  max-width: 9ch;
-  text-align: center;
-}
 
 @keyframes marquee {
   to {
