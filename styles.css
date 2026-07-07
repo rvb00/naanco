@@ -520,6 +520,20 @@ a {
   border-bottom: 1px solid currentColor;
 }
 
+.f-pill {
+  display: inline-flex;
+  margin-top: 22px;
+}
+
+.f-panel--red .pill {
+  border-color: var(--cream);
+}
+
+.f-panel--red .pill:hover {
+  background: var(--cream);
+  color: var(--red);
+}
+
 @media (min-width: 900px) {
   .founders-split {
     grid-template-columns: 1fr 1fr;
