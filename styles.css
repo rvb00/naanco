@@ -118,7 +118,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 600ms var(--ease), transform 900ms var(--ease);
+  transition: opacity 280ms var(--ease), transform 500ms var(--ease);
 }
 
 /* dissolve between the film and the drawing: cream washes in
@@ -150,7 +150,7 @@ a {
   stroke-width: 2.5;
   stroke-dasharray: 2600;
   stroke-dashoffset: 2600;
-  transition: opacity 500ms var(--ease);
+  transition: opacity 200ms var(--ease);
 }
 
 .intro-skip {
@@ -194,8 +194,8 @@ a {
 .intro.drawing .intro-logo {
   opacity: 1;
   animation:
-    logoDraw 1500ms var(--ease) forwards,
-    logoInk 550ms 1100ms var(--ease) forwards;
+    logoDraw 900ms var(--ease) forwards,
+    logoInk 400ms 650ms var(--ease) forwards;
 }
 
 @keyframes logoDraw {
