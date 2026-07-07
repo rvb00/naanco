@@ -305,21 +305,18 @@
         phase = "gone";
         intro.classList.add("leaving");
         unlock();
-        setTimeout(function () { intro.remove(); }, 750);
+        setTimeout(function () { intro.remove(); }, 650);
       }
 
       function draw() {
         if (phase !== "film") return;
         phase = "draw";
         skip.textContent = "Enter";
-        /* dissolve: the film drifts out and cream washes in ... */
+        /* the film melts away and the pen comes out at once */
         intro.classList.add("fading");
-        /* ... then the pen comes out */
-        setTimeout(function () {
-          video.pause();
-          intro.classList.add("drawing");
-        }, 950);
-        setTimeout(leave, 950 + 3100);
+        intro.classList.add("drawing");
+        setTimeout(function () { video.pause(); }, 650);
+        setTimeout(leave, 2350);
       }
 
       if (reduced || !intro) {

@@ -106,10 +106,10 @@ a {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: #000;
+  background: var(--cream);
   display: grid;
   place-items: center;
-  transition: opacity 700ms var(--ease), background-color 1000ms var(--ease);
+  transition: opacity 600ms var(--ease);
 }
 
 .intro video {
@@ -118,7 +118,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 950ms var(--ease), transform 1400ms var(--ease);
+  transition: opacity 600ms var(--ease), transform 900ms var(--ease);
 }
 
 /* dissolve between the film and the drawing: cream washes in
@@ -167,6 +167,13 @@ a {
   color: var(--red);
 }
 
+.intro.fading .intro-skip,
+.intro.drawing .intro-skip {
+  border-color: var(--red);
+  color: var(--red);
+  background: transparent;
+}
+
 /* phase B: cream room, pen comes out */
 .intro.drawing {
   background: var(--cream);
@@ -186,8 +193,8 @@ a {
 .intro.drawing .intro-logo {
   opacity: 1;
   animation:
-    logoDraw 2200ms var(--ease) forwards,
-    logoInk 700ms 1700ms var(--ease) forwards;
+    logoDraw 1500ms var(--ease) forwards,
+    logoInk 550ms 1100ms var(--ease) forwards;
 }
 
 @keyframes logoDraw {
