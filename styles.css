@@ -434,6 +434,107 @@ a {
 }
 
 /* ==========================================================
+   FOUNDERS — editorial split screen, legacy vs innovation
+   ========================================================== */
+
+.founders {
+  padding-top: clamp(40px, 8vw, 110px);
+}
+
+.founders .section-label {
+  text-align: center;
+  margin-bottom: clamp(28px, 5vw, 56px);
+}
+
+.founders-split {
+  display: grid;
+  border-top: 1px solid var(--red);
+}
+
+.f-panel {
+  padding: clamp(24px, 5vw, 64px) var(--gutter) clamp(40px, 6vw, 72px);
+}
+
+.f-panel--cream {
+  background: var(--cream);
+  color: var(--red);
+}
+
+.f-panel--red {
+  background: var(--red);
+  color: var(--cream);
+  border-top: 1px solid var(--cream);
+}
+
+.f-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.f-tag {
+  margin-top: 22px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.f-name {
+  margin-top: 6px;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(32px, 6vw, 54px);
+  line-height: 1.02;
+}
+
+.f-pull {
+  margin-top: 14px;
+  font-style: italic;
+  font-size: clamp(20px, 3vw, 27px);
+  line-height: 1.2;
+  max-width: 24ch;
+}
+
+.f-copy {
+  margin-top: 14px;
+  font-size: 15.5px;
+  line-height: 1.5;
+  max-width: 46ch;
+}
+
+.f-list {
+  margin-top: 22px;
+  list-style: none;
+  max-width: 46ch;
+}
+
+.f-list li {
+  padding: 9px 0;
+  border-top: 1px solid currentColor;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.f-list li:last-child {
+  border-bottom: 1px solid currentColor;
+}
+
+@media (min-width: 900px) {
+  .founders-split {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .f-panel--red {
+    border-top: 0;
+  }
+
+  .f-photo {
+    aspect-ratio: 3 / 4;
+  }
+}
+
+/* ==========================================================
    SHOP
    ========================================================== */
 
