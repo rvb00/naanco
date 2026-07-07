@@ -143,6 +143,7 @@ a {
   position: relative;
   width: min(80vw, 640px);
   color: var(--red);
+  fill: currentColor; /* SVG defaults to black without this */
   opacity: 0;
   fill-opacity: 0;
   stroke: var(--red);
