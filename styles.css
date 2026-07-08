@@ -325,7 +325,7 @@ a {
 
 .filmstrip figcaption {
   margin-top: 16px;
-  font-size: clamp(17px, 2.4vw, 23px);
+  font-size: clamp(20px, 2.8vw, 27px);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
