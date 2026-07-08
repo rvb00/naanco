@@ -292,6 +292,10 @@ a {
   text-align: center;
 }
 
+.hero-cols p + p {
+  margin-top: 12px;
+}
+
 .hero-cols p {
   font-size: 13px;
   line-height: 1.55;
@@ -320,9 +324,9 @@ a {
 }
 
 .filmstrip figcaption {
-  margin-top: 14px;
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  margin-top: 16px;
+  font-size: clamp(17px, 2.4vw, 23px);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
