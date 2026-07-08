@@ -1,7 +1,11 @@
 /* ==========================================================
    NAAN & CO — V4 "HOT, FRESH & SECOND TO NAAN"
-   Direction: Maple Pizza reference — one red, one cream,
-   Instrument Serif everywhere, air, tiny caps, cutout food.
+   Per Brand Guidelines Edition 01: Tandoor Red on Fresh Cream,
+   an Emerald Green accent on vegetarian tags. Type is a strict
+   two-role pair — Instrument Serif for display/editorial only
+   (headlines, dish names, pull-quotes), Poppins for everything
+   else (body copy, labels, specs, tracked-out caps). Pair,
+   don't mix, within a single layout.
    Opens on the Naancy film, then the logo draws itself on.
    Mobile-first: base styles target ~380px
    ========================================================== */
@@ -9,6 +13,11 @@
 :root {
   --red: #e30313;
   --cream: #fdfdf3;
+  --green: #1a5c43;
+  --ink: #0a0a0a;
+  --white: #ffffff;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "Poppins", "Helvetica Neue", Arial, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --gutter: clamp(20px, 5vw, 64px);
   --max-w: 1360px;
@@ -27,7 +36,7 @@ html {
 body {
   background: var(--cream);
   color: var(--red);
-  font-family: "Instrument Serif", Georgia, serif;
+  font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.35;
   -webkit-font-smoothing: antialiased;
@@ -269,6 +278,7 @@ a {
 }
 
 .hero-shout {
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(40px, 9.6vw, 118px);
   line-height: 0.98;
@@ -324,6 +334,7 @@ a {
 }
 
 .filmstrip figcaption {
+  font-family: var(--font-display);
   margin-top: 16px;
   font-size: clamp(20px, 2.8vw, 27px);
   letter-spacing: 0.06em;
@@ -351,6 +362,7 @@ a {
 }
 
 .dishline-set span {
+  font-family: var(--font-display);
   font-size: clamp(56px, 13vw, 160px);
   line-height: 1;
   text-transform: uppercase;
@@ -393,6 +405,7 @@ a {
 }
 
 .section-label {
+  font-family: var(--font-display);
   font-size: clamp(22px, 3.4vw, 34px);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -425,6 +438,7 @@ a {
 }
 
 .dish-name {
+  font-family: var(--font-display);
   margin-top: 18px;
   font-weight: 400;
   font-style: italic;
@@ -440,7 +454,7 @@ a {
 }
 
 .dish-v {
-  color: #2e7d32;
+  color: var(--green);
 }
 
 .dish-desc {
@@ -497,6 +511,7 @@ a {
 }
 
 .f-name {
+  font-family: var(--font-display);
   margin-top: 6px;
   font-weight: 400;
   font-style: italic;
@@ -505,6 +520,7 @@ a {
 }
 
 .f-pull {
+  font-family: var(--font-display);
   margin-top: 14px;
   font-style: italic;
   font-size: clamp(20px, 3vw, 27px);
