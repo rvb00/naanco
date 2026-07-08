@@ -433,9 +433,14 @@ a {
 }
 
 .dish-kind {
+  font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.dish-v {
+  color: #2e7d32;
 }
 
 .dish-desc {
