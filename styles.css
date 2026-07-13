@@ -840,3 +840,122 @@ a {
   .dish:nth-child(4) { margin-top: -20px; }
   .dish:nth-child(5) { margin-top: 72px; }
 }
+
+/* ==========================================================
+   FAQ page
+   ========================================================== */
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.faq-hero {
+  text-align: center;
+  padding-block: clamp(56px, 10vw, 120px) clamp(32px, 6vw, 56px);
+}
+
+.faq-shout {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(34px, 6.4vw, 72px);
+  line-height: 1;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+
+.faq-shout em {
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.faq {
+  padding-block: 0 clamp(56px, 10vw, 120px);
+}
+
+.faq-group {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.faq-group + .faq-group {
+  margin-top: clamp(40px, 7vw, 72px);
+}
+
+.faq-group .section-label {
+  font-size: clamp(20px, 2.8vw, 26px);
+  margin-bottom: clamp(12px, 2vw, 20px);
+}
+
+.faq-list {
+  border-top: 1px solid var(--red);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--red);
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  padding-block: 16px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.4;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1;
+  transition: transform 200ms var(--ease);
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item p {
+  padding-bottom: 20px;
+  padding-right: 40px;
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: rgba(227, 3, 19, 0.85);
+}
+
+.faq-item a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.faq-signoff {
+  font-family: var(--font-display);
+  font-style: italic;
+  text-align: center;
+  font-size: clamp(28px, 5vw, 44px);
+  margin-top: clamp(48px, 8vw, 88px);
+}
