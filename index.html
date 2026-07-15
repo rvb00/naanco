@@ -242,7 +242,7 @@
             </div>
             <div>
               <h3>Breakfast</h3>
-              <p>Served 7:00 to 10:00 am</p>
+              <p>Served 7:00 to 10:30 am</p>
             </div>
             <div>
               <h3>Lunch</h3>
@@ -292,7 +292,7 @@
     <div class="ribbon-track">
       <div class="ribbon-set">
         <span>Emirates Group Headquarters, Level 2</span>
-        <span>Breakfast 7:00&ndash;10:00 am</span>
+        <span>Breakfast 7:00&ndash;10:30 am</span>
         <span>Lunch 11:00 am&ndash;3:30 pm</span>
         <span>@naanco.ae</span>
         <span>FAQ</span>
@@ -300,7 +300,7 @@
       </div>
       <div class="ribbon-set" aria-hidden="true">
         <span>Emirates Group Headquarters, Level 2</span>
-        <span>Breakfast 7:00&ndash;10:00 am</span>
+        <span>Breakfast 7:00&ndash;10:30 am</span>
         <span>Lunch 11:00 am&ndash;3:30 pm</span>
         <span>@naanco.ae</span>
         <span>FAQ</span>
@@ -323,11 +323,16 @@
         document.body.classList.remove("intro-lock");
       }
 
+      function markSeen() {
+        try { sessionStorage.setItem("naanco-intro-seen", "1"); } catch (e) {}
+      }
+
       function leave() {
         if (phase === "gone") return;
         phase = "gone";
         intro.classList.add("leaving");
         unlock();
+        markSeen();
         setTimeout(function () { intro.remove(); }, 650);
       }
 
@@ -342,9 +347,20 @@
         setTimeout(leave, 1450);
       }
 
-      if (reduced || !intro) {
+      var seenIntro = false;
+      try { seenIntro = sessionStorage.getItem("naanco-intro-seen") === "1"; } catch (e) {}
+      var skipIntro = reduced || !intro || !!location.hash || seenIntro;
+
+      if (skipIntro) {
         unlock();
         if (intro) intro.remove();
+        markSeen();
+        /* the native hash-scroll-on-load can't run while intro-lock has
+           overflow:hidden on body, so land on the target ourselves */
+        if (location.hash) {
+          var jumpTarget = document.querySelector(location.hash);
+          if (jumpTarget) { jumpTarget.scrollIntoView(); }
+        }
       } else {
         video.addEventListener("ended", draw);
         skip.addEventListener("click", function () {
