@@ -145,7 +145,7 @@
   <script>
     (() => {
       const backend = "https://naanco-sales-performance.ronb00.chatgpt.site";
-      const ticketKey = "naanco_dashboard_ticket";
+      const proofKey = "naanco_dashboard_proof";
       const form = document.querySelector("#access-form");
       const password = document.querySelector("#dashboard-password");
       const button = form.querySelector("button");
@@ -153,21 +153,41 @@
       const copy = document.querySelector("#access-copy");
       const dashboard = document.querySelector("iframe");
       let opening = false;
+      let openingTimer = 0;
 
-      const ticketIsCurrent = (ticket) => {
-        const expires = Number(String(ticket || "").split(".")[0]);
-        return Number.isFinite(expires) && expires > Math.floor(Date.now() / 1000) + 30;
+      const sha256 = async (value) => {
+        const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+        return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
       };
 
-      const openDashboard = (ticket) => {
+      const resetGate = (message) => {
+        window.clearTimeout(openingTimer);
+        opening = false;
+        document.body.classList.remove("opening", "ready");
+        copy.textContent = "Enter the shared password to open the performance dashboard.";
+        error.textContent = message;
+        button.disabled = false;
+        button.textContent = "Unlock dashboard";
+        password.value = "";
+        password.focus();
+      };
+
+      const openDashboard = (proof) => {
         opening = true;
         document.body.classList.add("opening");
         copy.textContent = "Password accepted. Opening your dashboard…";
-        dashboard.src = `${backend}/?embedded=naanco#access=${encodeURIComponent(ticket)}`;
+        dashboard.src = `${backend}/?embedded=naanco&attempt=${Date.now()}#proof=${encodeURIComponent(proof)}`;
+        openingTimer = window.setTimeout(() => resetGate("The secure dashboard is taking too long to respond. Please try again."), 45000);
       };
 
-      dashboard.addEventListener("load", () => {
-        if (!opening) return;
+      window.addEventListener("message", (event) => {
+        if (event.origin !== backend || event.source !== dashboard.contentWindow || event.data?.type !== "naanco-dashboard-access") return;
+        if (!event.data.ok) {
+          window.sessionStorage.removeItem(proofKey);
+          resetGate("That password isn’t correct. Please try again.");
+          return;
+        }
+        window.clearTimeout(openingTimer);
         document.body.classList.remove("opening");
         document.body.classList.add("ready");
       });
@@ -179,28 +199,19 @@
         button.textContent = "Checking…";
         error.textContent = "";
         try {
-          const response = await fetch(`${backend}/api/access`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ password: password.value }),
-          });
-          const payload = await response.json();
-          if (!response.ok || !payload.ticket) throw new Error(response.status === 401 ? "incorrect" : "unavailable");
-          window.sessionStorage.setItem(ticketKey, payload.ticket);
-          openDashboard(payload.ticket);
+          const proof = await sha256(password.value);
+          window.sessionStorage.setItem(proofKey, proof);
+          openDashboard(proof);
         } catch (failure) {
-          error.textContent = failure.message === "incorrect" ? "That password isn’t correct. Please try again." : "The dashboard could not be reached. Please try again.";
-          button.disabled = false;
-          button.textContent = "Unlock dashboard";
-          password.select();
+          resetGate("Safari could not prepare secure access. Please try again.");
         }
       });
 
-      const savedTicket = window.sessionStorage.getItem(ticketKey);
-      if (ticketIsCurrent(savedTicket)) {
-        openDashboard(savedTicket);
+      const savedProof = window.sessionStorage.getItem(proofKey);
+      if (/^[a-f0-9]{64}$/.test(savedProof || "")) {
+        openDashboard(savedProof);
       } else {
-        window.sessionStorage.removeItem(ticketKey);
+        window.sessionStorage.removeItem(proofKey);
         const warm = () => { if (!opening && !dashboard.src) dashboard.src = `${backend}/?embedded=prewarm`; };
         if ("requestIdleCallback" in window) window.requestIdleCallback(warm, { timeout: 1200 });
         else window.setTimeout(warm, 250);
