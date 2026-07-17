@@ -2,90 +2,210 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#fdfdf3" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f5f1eb" />
   <title>Performance Dashboard | Naan &amp; Co</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://naanco-sales-performance.ronb00.chatgpt.site" crossorigin />
+  <link rel="dns-prefetch" href="//naanco-sales-performance.ronb00.chatgpt.site" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { width: 100%; height: 100%; overflow: hidden; }
+    :root { color-scheme: light; --red: #e30313; --green: #1a5c43; --cream: #fdfdf3; --ink: #171816; --muted: #6e6964; }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100%; margin: 0; overflow: hidden; }
     body {
-      background: #fdfdf3;
-      color: #171816;
-      font-family: -apple-system, "Poppins", "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh;
+      min-height: 100svh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 16%, rgba(227, 3, 19, .14), transparent 34%),
+        radial-gradient(circle at 88% 82%, rgba(26, 92, 67, .16), transparent 35%),
+        linear-gradient(145deg, #f3efe9, #eef1ee 52%, #f6e9e8);
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     }
-    iframe {
+    button, input { font: inherit; }
+    .access {
       position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      background: #fdfdf3;
-    }
-    .loading {
-      position: fixed;
-      z-index: 2;
+      z-index: 3;
       inset: 0;
       display: grid;
       place-items: center;
-      text-align: center;
-      padding: 24px;
-      background:
-        radial-gradient(circle at 15% 18%, rgba(227, 3, 19, .12), transparent 32%),
-        radial-gradient(circle at 85% 82%, rgba(26, 92, 67, .14), transparent 34%),
-        #fdfdf3;
-      transition: opacity .35s ease, visibility .35s ease;
+      min-height: 100svh;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+      transition: opacity .25s ease, visibility .25s ease;
     }
     .card {
+      position: relative;
       display: grid;
-      gap: 12px;
       justify-items: center;
-      width: min(360px, 100%);
-      padding: 34px;
-      border: 1px solid rgba(255, 255, 255, .9);
-      border-radius: 28px;
-      background: rgba(255, 255, 255, .52);
-      box-shadow: 0 28px 70px rgba(47, 53, 49, .12), inset 0 1px 0 white;
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      width: min(500px, 100%);
+      padding: clamp(32px, 7vw, 52px);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .92);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, .62);
+      box-shadow: 0 30px 80px rgba(46, 53, 49, .15), inset 0 1px 0 white;
+      text-align: center;
+      -webkit-backdrop-filter: blur(24px) saturate(150%);
+      backdrop-filter: blur(24px) saturate(150%);
     }
-    .mark { width: 142px; height: 58px; object-fit: contain; }
-    .eyebrow { color: #e30313; font-size: 9px; font-weight: 700; letter-spacing: 1.8px; }
-    p { color: #6e6964; font-size: 13px; letter-spacing: .01em; }
-    .pulse {
-      width: 8px;
-      height: 8px;
-      margin-top: 6px;
+    .card::after {
+      content: "";
+      position: absolute;
+      right: -105px;
+      bottom: -126px;
+      width: 260px;
+      height: 260px;
+      border: 42px solid rgba(227, 3, 19, .045);
       border-radius: 50%;
-      background: #1a5c43;
-      box-shadow: 0 0 0 7px rgba(26, 92, 67, .10);
-      animation: breathe 1.4s ease-in-out infinite;
+      pointer-events: none;
     }
-    body.ready .loading { opacity: 0; visibility: hidden; pointer-events: none; }
-    @keyframes breathe { 50% { transform: scale(.72); opacity: .55; } }
-    @media (prefers-reduced-motion: reduce) { .pulse { animation: none; } .loading { transition: none; } }
+    .mark { width: 148px; height: 62px; object-fit: contain; }
+    .eyebrow { margin: 18px 0 8px; color: var(--red); font-size: 9px; font-weight: 700; letter-spacing: 2px; }
+    h1 { margin: 0; font-size: clamp(34px, 8vw, 48px); line-height: 1.04; letter-spacing: -1.7px; }
+    .copy { max-width: 370px; margin: 16px auto 25px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    form { position: relative; z-index: 1; display: grid; gap: 10px; width: 100%; text-align: left; }
+    label { color: #4f4d49; font-size: 10px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; }
+    input {
+      width: 100%;
+      min-height: 56px;
+      padding: 0 17px;
+      border: 1px solid rgba(255, 255, 255, .96);
+      border-radius: 16px;
+      outline: 0;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: inset 0 1px 0 white, 0 8px 22px rgba(50, 55, 52, .05);
+      color: var(--ink);
+      font-size: 16px;
+    }
+    input:focus { border-color: rgba(26, 92, 67, .42); box-shadow: 0 0 0 4px rgba(26, 92, 67, .10), inset 0 1px 0 white; }
+    button {
+      min-height: 56px;
+      margin-top: 2px;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, .38);
+      border-radius: 16px;
+      background: linear-gradient(135deg, #1a5c43, #277b5b);
+      box-shadow: 0 12px 28px rgba(26, 92, 67, .20), inset 0 1px 0 rgba(255,255,255,.34);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    button:disabled { opacity: .58; cursor: wait; }
+    .error { min-height: 18px; margin: 2px 0 0; color: #b80010; font-size: 12px; text-align: center; }
+    .note { margin-top: 18px; color: #85817c; font-size: 9px; letter-spacing: .5px; }
+    .spinner { display: none; width: 18px; height: 18px; margin: 4px auto 0; border: 3px solid rgba(26,92,67,.15); border-top-color: var(--green); border-radius: 50%; animation: spin .7s linear infinite; }
+    body.opening .spinner { display: block; }
+    body.opening .copy { margin-bottom: 16px; }
+    body.opening form { display: none; }
+    body.opening .copy::after { content: " The first secure load may take a moment."; }
+    body.ready .access { opacity: 0; visibility: hidden; pointer-events: none; }
+    iframe {
+      position: fixed;
+      z-index: 1;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      border: 0;
+      background: var(--cream);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease;
+    }
+    body.ready iframe { opacity: 1; pointer-events: auto; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 520px) {
+      .card { padding: 34px 21px; border-radius: 24px; -webkit-backdrop-filter: none; backdrop-filter: none; }
+      .mark { width: 128px; height: 54px; }
+      h1 { font-size: 36px; }
+      .copy { margin-block: 14px 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .access, iframe { transition: none; } }
   </style>
 </head>
 <body>
-  <div class="loading" aria-live="polite">
-    <div class="card">
+  <main class="access" aria-labelledby="access-title">
+    <section class="card">
       <img class="mark" src="assets/favicon.svg" alt="Naan &amp; Co" />
-      <span class="eyebrow">N&amp;CO · PRIVATE OPERATIONS</span>
-      <p>Opening the performance dashboard&hellip;</p>
-      <span class="pulse" aria-hidden="true"></span>
-    </div>
-  </div>
-  <iframe
-    title="Naan &amp; Co performance dashboard"
-    src="https://naanco-sales-performance.ronb00.chatgpt.site/?embedded=naanco#top"
-    loading="eager"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allow="clipboard-write"
-  ></iframe>
+      <p class="eyebrow">N&amp;CO · PRIVATE OPERATIONS</p>
+      <h1 id="access-title">Naan-Stop Operations</h1>
+      <p class="copy" id="access-copy">Enter the shared password to open the performance dashboard.</p>
+      <form id="access-form">
+        <label for="dashboard-password">Password</label>
+        <input id="dashboard-password" name="password" type="password" autocomplete="current-password" enterkeyhint="go" placeholder="Enter password" required autofocus />
+        <button type="submit">Unlock dashboard</button>
+        <p class="error" id="access-error" role="alert" aria-live="polite"></p>
+      </form>
+      <span class="spinner" aria-hidden="true"></span>
+      <span class="note">Protected access · Naan &amp; Co</span>
+    </section>
+  </main>
+  <iframe title="Naan &amp; Co performance dashboard" referrerpolicy="no-referrer" allow="clipboard-write"></iframe>
   <script>
-    const dashboard = document.querySelector("iframe");
-    dashboard.addEventListener("load", () => document.body.classList.add("ready"), { once: true });
+    (() => {
+      const backend = "https://naanco-sales-performance.ronb00.chatgpt.site";
+      const ticketKey = "naanco_dashboard_ticket";
+      const form = document.querySelector("#access-form");
+      const password = document.querySelector("#dashboard-password");
+      const button = form.querySelector("button");
+      const error = document.querySelector("#access-error");
+      const copy = document.querySelector("#access-copy");
+      const dashboard = document.querySelector("iframe");
+      let opening = false;
+
+      const ticketIsCurrent = (ticket) => {
+        const expires = Number(String(ticket || "").split(".")[0]);
+        return Number.isFinite(expires) && expires > Math.floor(Date.now() / 1000) + 30;
+      };
+
+      const openDashboard = (ticket) => {
+        opening = true;
+        document.body.classList.add("opening");
+        copy.textContent = "Password accepted. Opening your dashboard…";
+        dashboard.src = `${backend}/?embedded=naanco#access=${encodeURIComponent(ticket)}`;
+      };
+
+      dashboard.addEventListener("load", () => {
+        if (!opening) return;
+        document.body.classList.remove("opening");
+        document.body.classList.add("ready");
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!password.value || button.disabled) return;
+        button.disabled = true;
+        button.textContent = "Checking…";
+        error.textContent = "";
+        try {
+          const response = await fetch(`${backend}/api/access`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ password: password.value }),
+          });
+          const payload = await response.json();
+          if (!response.ok || !payload.ticket) throw new Error(response.status === 401 ? "incorrect" : "unavailable");
+          window.sessionStorage.setItem(ticketKey, payload.ticket);
+          openDashboard(payload.ticket);
+        } catch (failure) {
+          error.textContent = failure.message === "incorrect" ? "That password isn’t correct. Please try again." : "The dashboard could not be reached. Please try again.";
+          button.disabled = false;
+          button.textContent = "Unlock dashboard";
+          password.select();
+        }
+      });
+
+      const savedTicket = window.sessionStorage.getItem(ticketKey);
+      if (ticketIsCurrent(savedTicket)) {
+        openDashboard(savedTicket);
+      } else {
+        window.sessionStorage.removeItem(ticketKey);
+        const warm = () => { if (!opening && !dashboard.src) dashboard.src = `${backend}/?embedded=prewarm`; };
+        if ("requestIdleCallback" in window) window.requestIdleCallback(warm, { timeout: 1200 });
+        else window.setTimeout(warm, 250);
+      }
+    })();
   </script>
   <noscript>This dashboard requires JavaScript.</noscript>
 </body>
