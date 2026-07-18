@@ -319,7 +319,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: clamp(16px, 3vw, 28px);
   margin: clamp(36px, 6vw, 64px) auto 0;
 }
