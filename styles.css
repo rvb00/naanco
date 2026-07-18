@@ -1144,7 +1144,7 @@ a {
 }
 
 .chef-photo--landscape {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
 }
 
 .chef-photo--wide {
@@ -1249,6 +1249,10 @@ a {
 }
 
 @media (min-width: 768px) {
+  .chef-photo--landscape {
+    aspect-ratio: 4 / 3;
+  }
+
   .alliance-heading-grid {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
