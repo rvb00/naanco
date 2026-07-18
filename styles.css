@@ -516,16 +516,13 @@ a {
 .f-panel--cream {
   background: var(--cream);
   color: var(--red);
+  border-top: 1px solid var(--red);
 }
 
 .f-panel--red {
   background: var(--red);
   color: var(--cream);
   border-top: 1px solid var(--cream);
-}
-
-.f-panel--ekfc {
-  border-top: 1px solid var(--red);
 }
 
 .f-photo {
@@ -608,11 +605,8 @@ a {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  .f-panel--red {
-    border-top: 0;
-  }
-
-  .f-panel--ekfc {
+  .f-panel--red,
+  .f-panel--cream {
     border-top: 0;
   }
 
