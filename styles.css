@@ -11,7 +11,7 @@
    ========================================================== */
 
 :root {
-  --red: #e30313;
+  --red: #c10712;
   --cream: #fdfdf3;
   --green: #1a5c43;
   --ink: #0a0a0a;
@@ -246,8 +246,16 @@ a {
   gap: 6px;
 }
 
-.header-left .pill:nth-child(2) {
-  display: none; /* second pill appears from tablet up */
+.header-left .pill:nth-child(n+2) {
+  display: none; /* Find us / About Us appear from tablet up */
+}
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: center;
+  min-width: 0;
 }
 
 .brand-mark {
@@ -255,12 +263,35 @@ a {
   align-items: center;
   min-height: 44px;
   color: var(--red);
-  justify-self: center;
+  flex-shrink: 0;
 }
 
 .brand-mark svg {
-  height: 34px;
+  height: 24px;
   width: auto;
+  flex-shrink: 0;
+}
+
+.brand-divider {
+  width: 1px;
+  height: 18px;
+  background: currentColor;
+  opacity: 0.3;
+  flex-shrink: 0;
+}
+
+.partner-mark {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+
+.partner-mark img {
+  height: 16px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
 }
 
 .header-right {
@@ -402,6 +433,7 @@ a {
 .menu {
   padding-block: clamp(40px, 8vw, 110px);
   text-align: center;
+  scroll-margin-top: 64px;
 }
 
 .section-label {
@@ -470,6 +502,7 @@ a {
 
 .founders {
   padding-top: clamp(40px, 8vw, 110px);
+  scroll-margin-top: 64px;
 }
 
 .founders .section-label {
@@ -567,6 +600,11 @@ a {
   color: var(--red);
 }
 
+.founders-cta {
+  text-align: center;
+  padding-block: clamp(32px, 6vw, 56px) clamp(16px, 3vw, 24px);
+}
+
 @media (min-width: 900px) {
   .founders-split {
     grid-template-columns: 1fr 1fr;
@@ -587,6 +625,7 @@ a {
 
 .shop {
   padding-block: clamp(56px, 10vw, 140px);
+  scroll-margin-top: 64px;
 }
 
 .shop-grid {
@@ -805,8 +844,24 @@ a {
     height: 64px;
   }
 
-  .header-left .pill:nth-child(2) {
+  .header-left .pill:nth-child(n+2) {
     display: inline-flex;
+  }
+
+  .brand-lockup {
+    gap: 10px;
+  }
+
+  .brand-mark svg {
+    height: 30px;
+  }
+
+  .brand-divider {
+    height: 20px;
+  }
+
+  .partner-mark img {
+    height: 22px;
   }
 
   .hero-cols {
@@ -831,6 +886,14 @@ a {
 }
 
 @media (min-width: 1100px) {
+  .brand-mark svg {
+    height: 34px;
+  }
+
+  .partner-mark img {
+    height: 26px;
+  }
+
   .dish-field {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -958,4 +1021,284 @@ a {
   text-align: center;
   font-size: clamp(28px, 5vw, 44px);
   margin-top: clamp(48px, 8vw, 88px);
+}
+
+/* ==========================================================
+   ABOUT page
+   ========================================================== */
+
+.about-hero {
+  text-align: center;
+  padding-block: clamp(56px, 10vw, 120px) clamp(40px, 7vw, 72px);
+}
+
+.about-shout {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(36px, 7vw, 76px);
+  line-height: 1.02;
+  letter-spacing: 0.005em;
+  margin-top: 14px;
+}
+
+.about-shout em {
+  font-style: italic;
+}
+
+.about-hero p {
+  max-width: 46ch;
+  margin: 18px auto 0;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.about-section {
+  padding-block: clamp(40px, 8vw, 96px);
+  scroll-margin-top: 64px;
+}
+
+.about-section + .about-section {
+  border-top: 1px solid var(--red);
+}
+
+.about-section .section-label {
+  margin-bottom: clamp(20px, 4vw, 36px);
+}
+
+/* ---------- The Concept ---------- */
+
+.concept-lead {
+  max-width: 62ch;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.concept-lead p + p {
+  margin-top: 14px;
+}
+
+.concept-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-top: clamp(28px, 5vw, 48px);
+}
+
+.concept-points {
+  display: grid;
+  gap: 28px;
+  margin-top: clamp(32px, 6vw, 56px);
+}
+
+.concept-point h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+
+.concept-point p {
+  margin-top: 6px;
+  font-size: 16px;
+  line-height: 1.55;
+  max-width: 52ch;
+}
+
+.concept-close {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(24px, 4vw, 36px);
+  line-height: 1.2;
+  max-width: 20ch;
+  margin-top: clamp(40px, 7vw, 64px);
+}
+
+/* ---------- Chef Vineet ---------- */
+
+.chef-grid {
+  display: grid;
+  gap: clamp(28px, 5vw, 40px);
+}
+
+.chef-photos {
+  position: relative;
+}
+
+.chef-photo {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  object-position: 20% 35%;
+  border-radius: 18px;
+}
+
+.chef-inset {
+  margin-top: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.chef-inset img {
+  width: 44%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid var(--cream);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.chef-inset-cap {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+}
+
+.chef-pull {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(24px, 4vw, 34px);
+  line-height: 1.15;
+}
+
+.chef-copy {
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 56ch;
+}
+
+.chef-copy p + p {
+  margin-top: 14px;
+}
+
+.chef-copy strong {
+  font-weight: 700;
+}
+
+.chef-facts {
+  margin-top: 24px;
+  list-style: none;
+  max-width: 56ch;
+  border-top: 1px solid currentColor;
+}
+
+.chef-facts li {
+  padding: 11px 0;
+  border-bottom: 1px solid currentColor;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------- The Powerhouse Alliance (EKFC) ---------- */
+
+.alliance {
+  padding-block: 0;
+  border-top: 1px solid var(--red);
+}
+
+.alliance-bleed {
+  position: relative;
+  isolation: isolate;
+}
+
+.alliance-bleed img {
+  width: 100%;
+  height: clamp(280px, 60vw, 520px);
+  object-fit: cover;
+}
+
+.alliance-bleed::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 0, 1, 0.7) 0%, rgba(10, 0, 1, 0.1) 45%, transparent 70%);
+  z-index: 1;
+}
+
+.alliance-overlay {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: var(--gutter);
+  padding-top: clamp(76px, 16vw, 104px);
+  color: var(--cream);
+}
+
+.alliance-overlay .section-label {
+  color: var(--cream);
+}
+
+.alliance-overlay p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(20px, 3.4vw, 30px);
+  line-height: 1.2;
+  max-width: 26ch;
+  margin-top: 10px;
+}
+
+.alliance-body {
+  padding-block: clamp(40px, 8vw, 96px);
+}
+
+.alliance-copy {
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 62ch;
+}
+
+.alliance-copy p + p {
+  margin-top: 14px;
+}
+
+.alliance-badges {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: clamp(28px, 5vw, 44px);
+}
+
+.alliance-logo-card {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 20px;
+  border: 1px solid var(--red);
+  border-radius: 14px;
+}
+
+.alliance-logo-card img {
+  height: 40px;
+  width: auto;
+}
+
+.alliance-launch {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: clamp(24px, 4vw, 36px);
+}
+
+@media (min-width: 768px) {
+  .concept-points {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .chef-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .alliance-body .wrap {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(40px, 6vw, 72px);
+    align-items: start;
+  }
 }
