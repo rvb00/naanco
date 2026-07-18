@@ -1198,6 +1198,11 @@ a {
   color: var(--cream);
 }
 
+.alliance-heading-grid {
+  display: grid;
+  gap: clamp(36px, 8vw, 72px);
+}
+
 .alliance-heading .section-label {
   color: var(--cream);
 }
@@ -1208,6 +1213,12 @@ a {
   font-size: clamp(28px, 5vw, 52px);
   line-height: 1.08;
   max-width: 22ch;
+}
+
+.alliance-heading-logo {
+  width: clamp(160px, 48vw, 220px);
+  height: auto;
+  filter: brightness(0) invert(1);
 }
 
 .alliance-body {
@@ -1238,6 +1249,15 @@ a {
 }
 
 @media (min-width: 768px) {
+  .alliance-heading-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .alliance-heading-logo {
+    width: clamp(240px, 24vw, 360px);
+  }
+
   .concept-points {
     grid-template-columns: repeat(3, 1fr);
   }
