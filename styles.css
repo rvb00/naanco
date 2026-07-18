@@ -1113,36 +1113,43 @@ a {
 }
 
 .chef-photos {
-  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(8px, 2vw, 16px);
+  align-items: start;
+}
+
+.chef-photo-column {
+  display: grid;
+  gap: clamp(8px, 2vw, 16px);
+}
+
+.chef-photo-column--offset {
+  padding-top: clamp(28px, 7vw, 68px);
 }
 
 .chef-photo {
   width: 100%;
-  aspect-ratio: 5 / 4;
   object-fit: cover;
-  object-position: 20% 35%;
-  border-radius: 18px;
+  border-radius: clamp(8px, 2vw, 16px);
 }
 
-.chef-inset {
-  margin-top: 14px;
-  display: grid;
-  gap: 8px;
+.chef-photo--portrait {
+  aspect-ratio: 4 / 5;
+  object-position: 26% center;
 }
 
-.chef-inset img {
-  width: 44%;
+.chef-photo--tall {
   aspect-ratio: 2 / 3;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 3px solid var(--cream);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
 
-.chef-inset-cap {
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  opacity: 0.75;
+.chef-photo--landscape {
+  aspect-ratio: 4 / 3;
+}
+
+.chef-photo--wide {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
 }
 
 .chef-pull {
@@ -1161,10 +1168,6 @@ a {
 
 .chef-copy p + p {
   margin-top: 14px;
-}
-
-.chef-copy strong {
-  font-weight: 700;
 }
 
 .chef-facts {
@@ -1189,47 +1192,22 @@ a {
   border-top: 1px solid var(--red);
 }
 
-.alliance-bleed {
-  position: relative;
-  isolation: isolate;
-}
-
-.alliance-bleed img {
-  width: 100%;
-  height: clamp(280px, 60vw, 520px);
-  object-fit: cover;
-}
-
-.alliance-bleed::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(10, 0, 1, 0.7) 0%, rgba(10, 0, 1, 0.1) 45%, transparent 70%);
-  z-index: 1;
-}
-
-.alliance-overlay {
-  position: absolute;
-  z-index: 2;
-  left: 0;
-  right: 0;
-  top: 0;
-  padding: var(--gutter);
-  padding-top: clamp(76px, 16vw, 104px);
+.alliance-heading {
+  padding-block: clamp(56px, 9vw, 108px);
+  background: var(--red);
   color: var(--cream);
 }
 
-.alliance-overlay .section-label {
+.alliance-heading .section-label {
   color: var(--cream);
 }
 
-.alliance-overlay p {
+.alliance-heading p {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(20px, 3.4vw, 30px);
-  line-height: 1.2;
-  max-width: 26ch;
-  margin-top: 10px;
+  font-size: clamp(28px, 5vw, 52px);
+  line-height: 1.08;
+  max-width: 22ch;
 }
 
 .alliance-body {
@@ -1246,34 +1224,17 @@ a {
   margin-top: 14px;
 }
 
-.alliance-badges {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.alliance-photo-column {
+  display: grid;
+  gap: clamp(10px, 2vw, 18px);
   margin-top: clamp(28px, 5vw, 44px);
 }
 
-.alliance-logo-card {
-  display: inline-flex;
-  align-items: center;
-  padding: 14px 20px;
-  border: 1px solid var(--red);
-  border-radius: 14px;
-}
-
-.alliance-logo-card img {
-  height: 40px;
-  width: auto;
-}
-
-.alliance-launch {
+.alliance-photo-column img {
   width: 100%;
-  max-width: 340px;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 14px;
-  margin-top: clamp(24px, 4vw, 36px);
+  height: auto;
+  object-fit: contain;
+  border-radius: clamp(8px, 2vw, 14px);
 }
 
 @media (min-width: 768px) {
@@ -1282,8 +1243,8 @@ a {
   }
 
   .chef-grid {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+    grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+    align-items: start;
   }
 
   .alliance-body .wrap {
@@ -1291,5 +1252,9 @@ a {
     grid-template-columns: 1.1fr 0.9fr;
     gap: clamp(40px, 6vw, 72px);
     align-items: start;
+  }
+
+  .alliance-photo-column {
+    margin-top: 0;
   }
 }
