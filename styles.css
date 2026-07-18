@@ -325,7 +325,8 @@ a {
 }
 
 .hero-stamp {
-  width: clamp(120px, 22vw, 190px);
+  height: clamp(90px, 16vw, 150px);
+  width: auto;
   color: var(--red);
 }
 
@@ -341,8 +342,8 @@ a {
 }
 
 .hero-partner img {
-  width: clamp(96px, 17vw, 150px);
-  height: auto;
+  height: clamp(90px, 16vw, 150px);
+  width: auto;
 }
 
 /* ---------- centered film block ---------- */
@@ -694,15 +695,20 @@ a {
 
 .shop-photos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 10px;
-  align-items: stretch;
 }
 
 .shop-photos img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.shop-photo--wide {
+  aspect-ratio: 3 / 2;
+}
+
+.shop-photo--portrait {
   aspect-ratio: 4 / 5;
 }
 
