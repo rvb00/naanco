@@ -250,48 +250,17 @@ a {
   display: none; /* Find us / About Us appear from tablet up */
 }
 
-.brand-lockup {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  justify-self: center;
-  min-width: 0;
-}
-
 .brand-mark {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   color: var(--red);
-  flex-shrink: 0;
+  justify-self: center;
 }
 
 .brand-mark svg {
-  height: 36px;
+  height: 34px;
   width: auto;
-  flex-shrink: 0;
-}
-
-.brand-divider {
-  width: 1px;
-  height: 20px;
-  background: currentColor;
-  opacity: 0.3;
-  flex-shrink: 0;
-}
-
-.partner-mark {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  flex-shrink: 0;
-}
-
-.partner-mark img {
-  height: 26px;
-  width: auto;
-  display: block;
-  flex-shrink: 0;
 }
 
 .header-right {
@@ -346,10 +315,34 @@ a {
   margin-inline: auto;
 }
 
+.hero-lockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(16px, 3vw, 28px);
+  margin: clamp(36px, 6vw, 64px) auto 0;
+}
+
 .hero-stamp {
   width: clamp(120px, 22vw, 190px);
-  margin: clamp(36px, 6vw, 64px) auto 0;
   color: var(--red);
+}
+
+.hero-divider {
+  width: 1px;
+  height: clamp(48px, 9vw, 76px);
+  background: var(--red);
+  opacity: 0.3;
+}
+
+.hero-partner {
+  display: inline-flex;
+}
+
+.hero-partner img {
+  width: clamp(96px, 17vw, 150px);
+  height: auto;
 }
 
 /* ---------- centered film block ---------- */
@@ -633,7 +626,7 @@ a {
   }
 
   .f-panel--ekfc .f-photo {
-    aspect-ratio: 21 / 9;
+    aspect-ratio: 16 / 9;
   }
 }
 
