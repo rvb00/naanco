@@ -613,10 +613,12 @@ a {
   }
 
   .f-panel--red {
+    order: 1;
     border-top: 0;
   }
 
   .f-panel--ekfc {
+    order: 2;
     grid-column: 1 / -1;
     border-top: 1px solid var(--red);
   }
@@ -636,8 +638,13 @@ a {
   }
 
   .f-panel--ekfc {
+    order: 1;
     grid-column: auto;
     border-top: 0;
+  }
+
+  .f-panel--red {
+    order: 2;
   }
 
   .f-panel--ekfc .f-photo {
