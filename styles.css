@@ -1209,6 +1209,8 @@ a {
 .alliance-heading-grid {
   display: grid;
   gap: clamp(36px, 8vw, 72px);
+  justify-items: center;
+  text-align: center;
 }
 
 .alliance-heading .section-label {
@@ -1264,10 +1266,13 @@ a {
   .alliance-heading-grid {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
+    justify-items: stretch;
+    text-align: left;
   }
 
   .alliance-heading-logo {
     width: clamp(240px, 24vw, 360px);
+    justify-self: end;
   }
 
   .concept-points {
